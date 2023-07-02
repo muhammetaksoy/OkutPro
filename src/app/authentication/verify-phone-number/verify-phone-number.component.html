@@ -1,0 +1,46 @@
+<div class="auth-container">
+    <div class="row auth-main">
+      <div class="col-sm-6 px-0 d-none d-sm-block">
+        <div class="left-img" style="background-image: url(assets/images/pages/bg-03.png);">
+        </div>
+      </div>
+      <div class="col-sm-6 auth-form-section">
+        <div class="form-section">
+          <div class="auth-wrapper">
+            <h2 class="welcome-msg text-center py-2">Telefon Doğrulama </h2>
+            <form class="validate-form" [formGroup]="verifyPhoneNumberForm">
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+
+                  
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Telefon numarası giriniz</mat-label>
+                  <span matPrefix>
+                    <mat-icon class="m-2">phone</mat-icon>
+                  </span>
+                  <input matInput formControlName="phone" required prefix="+90 " mask="(000) 000 00 00" (input)="onChangeNumber($event)" />
+                </mat-form-field>
+
+                  <button mat-raised-button color="primary" class="auth-form-btn" [disabled]="!showSentCodeButton" (click)="sendMobileCode()">
+                  Kod Gönder
+                </button>
+                </div>
+              </div>
+              <div class="container-auth-form-btn mt-5" *ngIf="isCodeSent">
+                <mat-form-field class="example-full-width p-t-20 p-b-15" appearance="outline">
+                  <mat-label>Kodu giriniz</mat-label>
+                  <input matInput formControlName="code">
+                </mat-form-field>
+                <button mat-raised-button color="primary" class="auth-form-btn" [disabled]="!verifyPhoneNumberForm.valid" 
+                (click)="verifyCode()" >
+                  Doğrula
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

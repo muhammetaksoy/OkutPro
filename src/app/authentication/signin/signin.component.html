@@ -28,9 +28,9 @@
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Email</mat-label>
-                  <input matInput formControlName="username" />
+                  <input matInput formControlName="Email" />
                   <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
-                  <mat-error *ngIf="authForm.get('username')?.hasError('required')">
+                  <mat-error *ngIf="authForm.get('Email')?.hasError('required')">
                     Email alanı zorunludur
                   </mat-error>
                 </mat-form-field>
@@ -40,16 +40,16 @@
               <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Şifre</mat-label>
-                  <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                  <input matInput [type]="hide ? 'password' : 'text'" formControlName="Pwd">
                   <a href="#" onClick="return false;" matSuffix (click)="hide = !hide"
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon class="material-icons-two-tone color-icon m-3" matSuffix>
                       {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </a>
-                  <mat-error *ngIf="authForm.get('password')?.hasError('required')">
+                  <mat-error *ngIf="authForm.get('Pwd')?.hasError('required')">
                     Şifre Alanı zorunludur
                   </mat-error>
-                </mat-form-field>
+                </mat-form-field> 
               </div>
             </div>
             <!-- <div class="d-flex justify-content-between align-items-center mb-5">

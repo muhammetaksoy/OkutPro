@@ -19,18 +19,21 @@ export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router) {
+
+    }
   ngOnInit() {
     this.authForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      email: [
+      NameSurname: ['', Validators.required],
+      Email: [
         '',
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      password: ['', Validators.required],
-      cpassword: ['', Validators.required],
+      Pwd: ['', Validators.required],
+      ConfirmPwd: ['', Validators.required],
+      Lang:['tr',Validators.required]
     });
+
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
