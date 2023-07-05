@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { HeaderName } from 'app/shared/enums';
-import { HeaderParameter } from 'app/shared/models/general/header-parameter.model';
-import { BaseHttpResponse } from 'app/shared/models/general/base-http-response.model';
+import { HeaderParameter } from '@core/models/general/header-parameter.model';
+import { HeaderName } from '@core/enums';
+import { BaseHttpResponse } from '@core/models/general/base-http-response.model';
+
 
 @Injectable()
 export class CoreHttpService {

@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { Role, AuthService } from '@core';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
+import { AuthenticationService } from '@core/services/general/authentication.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signin',
@@ -27,7 +29,8 @@ export class SigninComponent
     private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthenticationService,
+    private toasterService: ToastrService
   ) {
     super();
   }
@@ -35,7 +38,7 @@ export class SigninComponent
   ngOnInit() {
     this.authForm = this.formBuilder.group({
       Email: ['', Validators.required],
-      Pwd: ['', Validators.required]
+      Pwd: ['', Validators.required],
     });
   }
   get f() {
@@ -50,23 +53,28 @@ export class SigninComponent
       this.error = 'Username and Password not valid !';
       return;
     } else {
-      this.subs.sink = this.authService
-        .login(this.f['Email'].value, this.f['Pwd'].value)
-        .subscribe({
-          next: (res) => {
-            if (res) {
-              console.log("res",res);
-              
-            } else {
-              this.error = 'Invalid Login';
-            }
-          },
-          error: (error) => {
-            this.error = error;
-            this.submitted = false;
+      this.subs.sink = this.authService.login(this.authForm.value).subscribe({
+        next: (res) => {
+          if (res && res.isSuccess) {
             this.loading = false;
-          },
-        });
+            this.toasterService.success(res.status_tr);
+            this.router.navigate(['/admin/dashboard/main']);
+            
+          } else {
+            this.loading = false;
+            this.toasterService.error(res.status_tr);
+            if (res.needPhoneNumberVerification) {
+              this.router.navigate(['/authentication/verify-phone-number']);
+            } 
+          }
+        },
+        error: (error) => {
+          this.error = error;
+          this.toasterService.error(this.error);
+          this.submitted = false;
+          this.loading = false;
+        },
+      });
     }
   }
 }

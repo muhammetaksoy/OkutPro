@@ -27,6 +27,7 @@ import {
 
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -60,7 +61,11 @@ export function createTranslateLoader(http: HttpClient) {
     LoadingBarRouterModule,
     // core & shared
     CoreModule,
-    SharedModule
+    SharedModule,
+    ToastrModule.forRoot({
+      timeOut:3000,
+      progressBar:true
+    }),
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

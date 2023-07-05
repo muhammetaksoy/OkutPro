@@ -9,7 +9,7 @@ import { Endpoint } from '@core/enums/endpoint.enum';
   providedIn: 'root',
 })
 export class ProductService extends BaseHttpService {
-  constructor(protected httpClient: HttpClient) {
+  constructor(protected override httpClient: HttpClient) {
     super(httpClient);
   }
 

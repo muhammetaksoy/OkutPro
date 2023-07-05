@@ -5,6 +5,8 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { AuthenticationService } from '@core/services/general/authentication.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -19,9 +21,10 @@ export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute,
-    private router: Router) {
-
-    }
+    private router: Router,
+    private authService: AuthenticationService,
+    private toasterService: ToastrService
+  ) {}
   ngOnInit() {
     this.authForm = this.formBuilder.group({
       NameSurname: ['', Validators.required],
@@ -31,7 +34,6 @@ export class SignupComponent implements OnInit {
       ],
       Pwd: ['', Validators.required],
       ConfirmPwd: ['', Validators.required],
-      Lang:['tr',Validators.required]
     });
 
     // get return url from route parameters or default to '/'
@@ -46,7 +48,32 @@ export class SignupComponent implements OnInit {
     if (this.authForm.invalid) {
       return;
     } else {
-      this.router.navigate(['/admin/dashboard/main']);
+      if (this.authForm.value.Pwd !== this.authForm.value.ConfirmPwd) {
+        this.toasterService.error('Girilen şifreler aynı olmalı');
+      } else {
+
+        const model: any = {
+          NameSurname: this.authForm.value.NameSurname,
+          Email: this.authForm.value.Email,
+          Pwd: this.authForm.value.Pwd,
+          Lang: 'tr',
+        };
+
+        this.authService.register(model).subscribe({
+          next: (res) => {
+            if (res && res.isSuccess) {
+              this.router.navigate(['/authentication/signin']);
+              this.toasterService.success(res.status_tr);
+            } else {
+              this.toasterService.error(res.status_tr);
+            }
+          },
+          error: (error) => {
+            this.toasterService.error(error);
+            this.submitted = false;
+          },
+        });
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 export interface ServiceResult<T> {
   StatusCode: number;
   IsSuccess: boolean;
-  ErrorMessage: string | string[];
+  ErrorMessage: any;
   Result: T;
-  FileName?: string;
+  FileName?: any;
 }

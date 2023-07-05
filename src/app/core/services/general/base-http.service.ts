@@ -12,7 +12,7 @@ import { BaseHttpResponse } from '@core/models/general/base-http-response.model'
 export class BaseHttpService extends CoreHttpService {
   apiUrl: string;
 
-  constructor(protected httpClient: HttpClient) {
+  constructor(protected override httpClient: HttpClient) {
     super(httpClient);
     this.apiUrl = environment.apiUrl;
   }
