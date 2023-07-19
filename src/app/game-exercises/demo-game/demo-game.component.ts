@@ -29,16 +29,9 @@ export class DemoGameComponent {
           baseHttpResponse.ServiceResult.Result.exercises.forEach((x) => {
             x.JSONContent = JSON.parse(x.JSONContent);
           });
-          // this.startInitialTestList = ;
-          this.exercises = baseHttpResponse.ServiceResult.Result.exercises;
-          this.exercises.forEach(exercise => {
-            exercise.ItemIndex = this.currentExerciseIndex
-            this.currentExerciseIndex++;
-          })
-          this.exerciseCount = baseHttpResponse.ServiceResult.Result.exerciseCount;
-
-          console.log('exercises: ', this.exercises);
-
+          this.startInitialTestList = baseHttpResponse.ServiceResult.Result;
+          this.exercises = this.startInitialTestList.exercises;
+          this.exerciseCount = this.startInitialTestList.exerciseCount;
 
         }
       }
