@@ -1,3 +1,4 @@
+import { GameExercisesLayoutComponent } from './layout/app-layout/game-exercises-layout/game-exercises-layout.component';
 import { Page404Component } from './authentication/page404/page404.component';
 import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout.component';
@@ -65,10 +66,18 @@ const routes: Routes = [
         (m) => m.AuthenticationModule
       ),
   },
+  {
+    path: 'game-exercises',
+    component: GameExercisesLayoutComponent,
+    loadChildren: () =>
+      import('./game-exercises/game-exercises.module').then(
+        (m) => m.GameExercisesModule
+      ),
+  },
   { path: '**', component: Page404Component },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, {})],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

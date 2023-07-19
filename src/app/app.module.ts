@@ -1,3 +1,4 @@
+import { GameExercisesLayoutComponent } from './layout/app-layout/game-exercises-layout/game-exercises-layout.component';
 import { NgModule } from '@angular/core';
 
 import { CoreModule } from './core/core.module';
@@ -44,6 +45,7 @@ export function createTranslateLoader(http: HttpClient) {
     RightSidebarComponent,
     AuthLayoutComponent,
     MainLayoutComponent,
+    GameExercisesLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -63,8 +65,8 @@ export function createTranslateLoader(http: HttpClient) {
     CoreModule,
     SharedModule,
     ToastrModule.forRoot({
-      timeOut:3000,
-      progressBar:true
+      timeOut: 3000,
+      progressBar: true
     }),
   ],
   providers: [
@@ -74,4 +76,4 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

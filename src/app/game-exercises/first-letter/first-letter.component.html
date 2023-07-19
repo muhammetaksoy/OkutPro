@@ -1,0 +1,20 @@
+<div>
+  <h2>{{ exercise.JSONContent.keyword }}</h2>
+  <p>{{ exercise.JSONContent.questionText }}</p>
+  <p>Zorluk: {{ exercise.Difficulty }}</p>
+  <p>Dil: {{ exercise.Language }}</p>
+
+
+  <ul>
+    <li *ngFor="let error of exercise.JSONContent.PossibleErrors">
+      <label>{{ error.ErrorText }}</label>
+      <button (click)="onAnswerChange(error.ErrorId, 1)"
+        [ngClass]="{ 'selected': isSelected(error.ErrorId, 1) }">Evet</button>
+      <button (click)="onAnswerChange(error.ErrorId, 0)"
+        [ngClass]="{ 'selected': isSelected(error.ErrorId, 0) }">Hayır</button>
+    </li>
+  </ul>
+
+  <button (click)="onBack()">Geri</button>
+  <button (click)="onNext()">İleri</button>
+</div>

@@ -1,0 +1,41 @@
+<button *ngIf="!currentExercise" (click)="startTest()">Testi Başlat</button>
+
+<ng-container *ngIf="currentExercise">
+
+  <ng-container *ngIf="currentExercise.GameMechanic_Id === 1">
+    <app-first-letter [exercise]="currentExercise" (navigateBack)="onNavigateBack()"
+      (navigateNext)="onNavigateNext($event)" (quizFinished)="onQuizFinished()"></app-first-letter>
+  </ng-container>
+  <ng-container *ngIf="currentExercise.GameMechanic_Id ===2">
+    <app-first-letter [exercise]="currentExercise" (navigateBack)="onNavigateBack()"
+      (navigateNext)="onNavigateNext($event)" (quizFinished)="onQuizFinished()"></app-first-letter>
+  </ng-container>
+  <ng-container *ngIf="currentExercise.GameMechanic_Id === 3">
+    <app-first-letter [exercise]="currentExercise" (navigateBack)="onNavigateBack()"
+      (navigateNext)="onNavigateNext($event)" (quizFinished)="onQuizFinished()"></app-first-letter>
+  </ng-container>
+  <ng-container *ngIf="currentExercise.GameMechanic_Id === 4">
+    <app-first-letter [exercise]="currentExercise" (navigateBack)="onNavigateBack()"
+      (navigateNext)="onNavigateNext($event)" (quizFinished)="onQuizFinished()"></app-first-letter>
+  </ng-container>
+  <ng-container *ngIf="currentExercise.GameMechanic_Id === 5">
+    <app-first-letter [exercise]="currentExercise" (navigateBack)="onNavigateBack()"
+      (navigateNext)="onNavigateNext($event)" (quizFinished)="onQuizFinished()"></app-first-letter>
+  </ng-container>
+  <ng-container *ngIf="currentExercise.GameMechanic_Id === 6">
+    <app-first-letter [exercise]="currentExercise" (navigateBack)="onNavigateBack()"
+      (navigateNext)="onNavigateNext($event)" (quizFinished)="onQuizFinished()"></app-first-letter>
+  </ng-container>
+  <ng-container *ngIf="currentExercise.GameMechanic_Id === 7">
+    <app-first-letter [exercise]="currentExercise" (navigateBack)="onNavigateBack()"
+      (navigateNext)="onNavigateNext($event)" (quizFinished)="onQuizFinished()"></app-first-letter>
+  </ng-container>
+  <ng-container *ngIf="currentExercise.GameMechanic_Id === 8">
+    <app-first-letter [exercise]="currentExercise" (navigateBack)="onNavigateBack()"
+      (navigateNext)="onNavigateNext($event)" (quizFinished)="onQuizFinished()"></app-first-letter>
+  </ng-container>
+
+
+  <button *ngIf="isLastExercise" (click)="onQuizFinished()">Quiz'i Bitir</button>
+
+</ng-container>

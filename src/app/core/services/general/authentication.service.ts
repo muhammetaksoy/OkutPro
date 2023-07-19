@@ -13,36 +13,36 @@ export class AuthenticationService {
   private tokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   public token$: Observable<any> = this.tokenSubject.asObservable();
 
-  constructor(private http: HttpClient,private router:Router) {
+  constructor(private http: HttpClient, private router: Router) {
     const token = localStorage.getItem('token');
     if (token) {
       this.setToken(token);
     }
   }
 
-  login(data:any): Observable<any> {
-    return this.http.post(environment.apiUrl+Endpoint.auth_login, data).pipe(
-      tap((response:any) => {
+  login(data: any): Observable<any> {
+    return this.http.post(environment.apiUrl + Endpoint.auth_login, data).pipe(
+      tap((response: any) => {
         this.setToken(response.token);
       })
     );
   }
 
-  logout():void{
+  logout(): void {
     localStorage.removeItem('access_token');
   }
 
-  register(data:any): Observable<any> {
-    return this.http.post(environment.apiUrl+Endpoint.auth_register, data);
+  register(data: any): Observable<any> {
+    return this.http.post(environment.apiUrl + Endpoint.auth_register, data);
   }
 
 
   addPhoneNumber(phoneNumber: string): Observable<any> {
-    return this.http.get(environment.apiUrl+Endpoint.auth_addPhoneNumber+"?phoneNumber=+90"+phoneNumber);
+    return this.http.get(environment.apiUrl + Endpoint.auth_addPhoneNumber + "?phoneNumber=+90" + phoneNumber);
   }
 
   verifySms(smsCode: string): Observable<any> {
-    return this.http.get(environment.apiUrl+Endpoint.auth_verifySms+"?input="+smsCode);
+    return this.http.get(environment.apiUrl + Endpoint.auth_verifySms + "?input=" + smsCode);
   }
 
 
