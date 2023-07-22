@@ -2,13 +2,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-first-letter',
-  templateUrl: './first-letter.component.html',
-  styleUrls: ['./first-letter.component.scss']
+  selector: 'app-letter-positioning-last',
+  templateUrl: './letter-positioning-last.component.html',
+  styleUrls: ['./letter-positioning-last.component.scss']
 })
-export class FirstLetterComponent {
+export class LetterPositioningLastComponent {
   @Input() exercise: any;
   @Input() isLastExercise: any;
+
   @Output() navigateBack = new EventEmitter<any>();
   @Output() navigateNext = new EventEmitter<any>();
 

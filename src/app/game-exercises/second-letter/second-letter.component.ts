@@ -1,26 +1,63 @@
-import { GameMechanicType } from '../shared/enums/game-mechanic-type';
-import { StartInitialTestModel } from '../shared/models/start-initial-test.model';
-import { ExercisesService } from '../shared/services/exercises.service';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BaseHttpResponse } from '@core/models/general/base-http-response.model';
-import { ExercisesModel } from '../shared/models/exercises.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-second-letter',
   templateUrl: './second-letter.component.html',
-  styleUrls: ['./second-letter.component.scss'],
+  styleUrls: ['./second-letter.component.scss']
 })
 export class SecondLetterComponent {
-  @Input() question: any;
+  @Input() exercise: any;
+  @Input() isLastExercise: any;
 
-  secondLetterForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
-    this.secondLetterForm = this.formBuilder.group({
-      ExerciseId: ['', Validators.required],
-      Start: ['', Validators.required],
-      Finish: ['', Validators.required],
-      ErrorRecords: this.formBuilder.array([])
-    });
+  @Output() navigateBack = new EventEmitter<any>();
+  @Output() navigateNext = new EventEmitter<any>();
+
+  openDate: Date | undefined;
+
+
+  constructor() {
+
   }
 
+  onBack() {
+    this.navigateBack.emit();
+  }
+
+  onNext() {
+
+    const date: any = moment();
+    const newDateTime = date.add(3, 'hours');
+
+    const formData = {
+      exerciseId: this.exercise.Id,
+      start: this.exercise.start || new newDateTime.toISOString(),
+      finish: newDateTime.toISOString(),
+      errorRecords: this.exercise.JSONContent.PossibleErrors.map((error: any) => {
+        return {
+          errorId: error.ErrorId,
+          count: error.selected === true ? 1 : 0
+        };
+      })
+    };
+
+    this.navigateNext.emit(formData);
+  }
+
+  onAnswerChange(error: any, selected: boolean) {
+    error.selected = selected;
+  }
+
+  isAllErrorsSelected(): boolean {
+    for (const error of this.exercise.JSONContent.PossibleErrors) {
+      if (!error.hasOwnProperty('selected')) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  get isNextDisabled(): boolean {
+    return !this.isAllErrorsSelected();
+  }
 }

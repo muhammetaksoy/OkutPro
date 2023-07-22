@@ -2,16 +2,18 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-first-letter',
-  templateUrl: './first-letter.component.html',
-  styleUrls: ['./first-letter.component.scss']
+  selector: 'app-middle-letter',
+  templateUrl: './middle-letter.component.html',
+  styleUrls: ['./middle-letter.component.scss']
 })
-export class FirstLetterComponent {
+export class MiddleLetterComponent {
   @Input() exercise: any;
   @Input() isLastExercise: any;
+
   @Output() navigateBack = new EventEmitter<any>();
   @Output() navigateNext = new EventEmitter<any>();
 
+  openDate: Date | undefined;
 
 
   constructor() {
