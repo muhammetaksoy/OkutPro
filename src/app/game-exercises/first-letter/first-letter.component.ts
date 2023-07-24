@@ -11,11 +11,15 @@ export class FirstLetterComponent {
   @Input() isLastExercise: any;
   @Output() navigateBack = new EventEmitter<any>();
   @Output() navigateNext = new EventEmitter<any>();
-
+  @Output() quizFinished = new EventEmitter<any>();
 
 
   constructor() {
 
+  }
+
+  onFinishQuiz(){
+    this.quizFinished.emit();
   }
 
   onBack() {

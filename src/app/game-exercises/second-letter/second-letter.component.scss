@@ -1,4 +1,142 @@
-.selected {
-    background-color: red;
-    color: #fff;
+.quiz-container {
+    background-color: #f7f7f7;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.main-question {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 600;
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+  
+    p {
+      font-size: 1.5rem;
+      color: #666;
+    }
+}
+
+.error-questions {
+    width: 50%;
+    text-align: center;
+    margin: 1.5rem;
+
+    .error-question-text{
+        font-size: 1.2rem;
+    }
+}
+
+/* Buttons */
+.answer-button-container{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+
+    button {        
+        background-color: #ffffff;
+        border: 2px solid #a67cbf;
+        color: rgb(147, 147, 147);
+        transition: 0.5s;
+        padding: 10px 30px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1rem !important;
+        letter-spacing: 1.5px;
+    }
+}
+
+.direction-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 2px solid #e5e5e5;
+    
+}
+
+.direction-buttons {
+    width: 50%;
+    padding: 2rem 0rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+
+    button {
+        background-color: #a67cbf;
+        border: 2px solid #a67cbf;
+        color: #ffffff;
+        transition: 0.5s;
+        padding: 10px 30px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1rem !important;
+        letter-spacing: 2px;
+    }
+
+    button[disabled] {
+        cursor: not-allowed !important;
+        background-color: #ffffff;
+        border: 2px solid #a67cbf;
+        color: rgb(147, 147, 147)
+    }
+
+}
+
+
+.selected {
+    background-color: #a67cbf !important;
+    color: #ffffff !important;
+}
+
+
+@media screen and (max-width: 768px) {
+    .quiz-container {
+      width: 90%;
+    }
+  
+    .error-questions {
+      width: 90%;
+      margin: 0.5rem;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .main-question {
+      h2 {
+        font-size: 1.5rem;
+      }
+  
+      p {
+        font-size: 1rem;
+      }
+    }
+  
+    .error-question-text {
+      font-size: 1rem;
+    }
+  
+    .answer-button-container {
+      button {
+        font-size: 0.8rem;
+      }
+    }
+  
+    .direction-buttons {
+        width:90%;
+      button {
+        font-size: 0.8rem;
+      }
+    }
+  }

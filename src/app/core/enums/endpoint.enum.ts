@@ -7,7 +7,8 @@ export enum Endpoint {
 
 
 
-  Exercises_List_StartInitialTest = "Exercise/StartInitialTest"
+  Exercises_List_StartInitialTest = "Exercise/StartInitialTest",
+  Exercises_Save_FinishInitialTest = "Exercise/FinishInitialTest"
 
 
 }

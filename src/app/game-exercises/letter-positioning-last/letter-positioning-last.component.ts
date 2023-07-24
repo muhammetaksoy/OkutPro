@@ -9,14 +9,17 @@ import * as moment from 'moment';
 export class LetterPositioningLastComponent {
   @Input() exercise: any;
   @Input() isLastExercise: any;
-
   @Output() navigateBack = new EventEmitter<any>();
   @Output() navigateNext = new EventEmitter<any>();
-
+  @Output() quizFinished = new EventEmitter<any>();
 
 
   constructor() {
 
+  }
+
+  onFinishQuiz(){
+    this.quizFinished.emit();
   }
 
   onBack() {
@@ -25,10 +28,14 @@ export class LetterPositioningLastComponent {
 
   onNext() {
 
+    console.log("rhis.exercise",this.exercise.ItemIndex);
+    
+
     const date: any = moment();
     const newDateTime = date.add(3, 'hours');
 
     const formData = {
+      ItemIndex:this.exercise.ItemIndex,
       exerciseId: this.exercise.Id,
       start: this.exercise.start || new newDateTime.toISOString(),
       finish: newDateTime.toISOString(),

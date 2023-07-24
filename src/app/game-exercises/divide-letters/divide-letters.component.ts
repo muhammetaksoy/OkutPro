@@ -11,12 +11,15 @@ export class DivideLettersComponent {
   @Input() isLastExercise: any;
   @Output() navigateBack = new EventEmitter<any>();
   @Output() navigateNext = new EventEmitter<any>();
-
-  openDate: Date | undefined;
+  @Output() quizFinished = new EventEmitter<any>();
 
 
   constructor() {
 
+  }
+
+  onFinishQuiz(){
+    this.quizFinished.emit();
   }
 
   onBack() {

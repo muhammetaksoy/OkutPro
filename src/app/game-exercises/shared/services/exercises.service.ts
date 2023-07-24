@@ -13,13 +13,12 @@ export class ExercisesService extends BaseHttpService {
         super(httpClient);
     }
 
-
-    //   listBySearch(data:any) {
-    //     return this.basePost<any>(data, Endpoint.product_listBySearch);
-    //   }
-
     Exercises_List_StartInitialTest() {
         return this.baseGet<any>(Endpoint.Exercises_List_StartInitialTest);
+    }
+
+    Exercises_Save_FinishInitialTest(data:any) {
+        return this.basePost<any>(data,Endpoint.Exercises_Save_FinishInitialTest);
     }
 
 }

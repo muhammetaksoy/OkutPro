@@ -1,17 +1,25 @@
-<div>
-  <h2>{{ exercise.JSONContent.keyword }}</h2>
-  <p>{{ exercise.JSONContent.questionText }}</p>
-  <p>Zorluk: {{ exercise.Difficulty }}</p>
-  <p>Dil: {{ exercise.Language }}</p>
+<div class="quiz-container">
 
-  <ul>
-    <li *ngFor="let error of exercise.JSONContent.PossibleErrors">
-      <label>{{ error.ErrorText }}</label>
+  <div class="main-question">
+    <h2>{{ exercise.JSONContent.keyword }}</h2>
+    <p>{{ exercise.JSONContent.questionText }}</p>
+  </div>
+
+  <div class="error-questions" *ngFor="let error of exercise.JSONContent.PossibleErrors">
+    <label class="error-question-text">{{ error.ErrorText }}</label>
+    <div class="answer-button-container">
       <button (click)="onAnswerChange(error, true)" [ngClass]="{ 'selected': error.selected === true }">Evet</button>
       <button (click)="onAnswerChange(error, false)" [ngClass]="{ 'selected': error.selected === false }">Hayır</button>
-    </li>
-  </ul>
+    </div>
+  </div>
 
-  <button (click)="onBack()" [disabled]="exercise.ItemIndex==0">Geri</button>
-  <button (click)="onNext()" [disabled]="isNextDisabled">{{ isLastExercise ? 'Quiz\'i Bitir' : 'İleri' }}</button>
+</div>
+
+<div class="direction-container">
+  <div class="direction-buttons">
+    <button (click)="onBack()" [disabled]="exercise.ItemIndex==0">Geri</button>
+    <button (click)="onNext()" [disabled]="isNextDisabled">İleri</button>
+      <button *ngIf="isLastExercise" (click)="onFinishQuiz()">Quiz'i Bitir</button>
+
+  </div>
 </div>
