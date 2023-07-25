@@ -46,8 +46,7 @@ export class DemoGameComponent {
               exercise.ItemIndex = index;
               index++;
             });
-            this.exerciseCount =
-              baseHttpResponse.ServiceResult.Result.exerciseCount;
+            this.exerciseCount = baseHttpResponse.ServiceResult.Result.exerciseCount;
           }
         }
       );

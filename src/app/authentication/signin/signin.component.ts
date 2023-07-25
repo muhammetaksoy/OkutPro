@@ -17,8 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SigninComponent
   extends UnsubscribeOnDestroyAdapter
-  implements OnInit
-{
+  implements OnInit {
   authForm!: UntypedFormGroup;
   submitted = false;
   loading = false;
@@ -45,6 +44,10 @@ export class SigninComponent
     return this.authForm.controls;
   }
 
+  doDemoTest(): void {
+    this.router.navigate(['/game-exercises/demo']);
+  }
+
   onSubmit() {
     this.submitted = true;
     this.loading = true;
@@ -59,13 +62,13 @@ export class SigninComponent
             this.loading = false;
             this.toasterService.success(res.status_tr);
             this.router.navigate(['/admin/dashboard/main']);
-            
+
           } else {
             this.loading = false;
             this.toasterService.error(res.status_tr);
             if (res.needPhoneNumberVerification) {
               this.router.navigate(['/authentication/verify-phone-number']);
-            } 
+            }
           }
         },
         error: (error) => {
