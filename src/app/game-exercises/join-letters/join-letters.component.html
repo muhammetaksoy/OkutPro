@@ -1,7 +1,7 @@
 <div class="quiz-container">
 
   <div class="main-question">
-    <h2>{{ exercise.JSONContent.keyword }}</h2>
+    <h2>{{ getWordsAsString()}}</h2>
     <p>{{ exercise.JSONContent.questionText }}</p>
   </div>
 
@@ -19,7 +19,7 @@
   <div class="direction-buttons">
     <button (click)="onBack()" [disabled]="exercise.ItemIndex==0">Geri</button>
     <button (click)="onNext()" [disabled]="isNextDisabled">İleri</button>
-      <button *ngIf="isLastExercise" (click)="onFinishQuiz()">Quiz'i Bitir</button>
+    <button *ngIf="isLastExercise" (click)="onFinishQuiz()">Quiz'i Bitir</button>
 
   </div>
 </div>

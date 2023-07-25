@@ -6,7 +6,8 @@ import { ConfigService } from '@config';
 
 @Component({
     selector: 'app-game-exercises-layout',
-    templateUrl: './game-exercises-layout.component.html'
+    templateUrl: './game-exercises-layout.component.html',
+    styleUrls: ['./game-exercises-layout.component.scss'],
 })
 export class GameExercisesLayoutComponent {
 

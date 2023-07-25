@@ -65,15 +65,28 @@ export class DemoGameComponent {
   }
 
   onNavigateNext(data: any) {
+
+    console.log("data", data);
+
     this.exerciseCount--;
     const existingResultIndex = this.exerciseResults.findIndex(
       (result) => result.exerciseId === data.exerciseId
     );
 
     if (existingResultIndex !== -1) {
-      this.exerciseResults[existingResultIndex] = data;
+      this.exerciseResults[existingResultIndex] = {
+        exerciseId: data.exerciseId,
+        start: data.start,
+        finish: data.finish,
+        ErrorRecords: data.errorRecords
+      };
     } else {
-      this.exerciseResults.push(data);
+      this.exerciseResults.push({
+        exerciseId: data.exerciseId,
+        start: data.start,
+        finish: data.finish,
+        ErrorRecords: data.errorRecords
+      });
     }
 
     if (this.currentExerciseIndex < this.exercises.length - 1) {
@@ -128,7 +141,7 @@ export class DemoGameComponent {
     }
   }
 
-  onQuizFinished() {}
+  onQuizFinished() { }
 
   getProgress(): number {
     const currentQuestionIndex = this.currentExerciseIndex + 1;

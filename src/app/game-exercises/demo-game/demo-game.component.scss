@@ -1,4 +1,4 @@
-.start-test{
+.start-test {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,9 +23,9 @@
 
 .progress-container {
     background-color: #f7f7f7;
-    height:30px;
+    height: 30px;
     width: 50%;
-    margin:80px auto;
+    margin: 40px auto;
     overflow: hidden;
     border-radius: 10px;
 }
@@ -41,4 +41,4 @@
     .progress-container {
         width: 90%;
     }
-  }
+}

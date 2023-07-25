@@ -18,7 +18,11 @@ export class JoinLettersComponent {
 
   }
 
-  onFinishQuiz(){
+  getWordsAsString(): string {
+    return this.exercise.JSONContent.letters.join('-');
+  }
+
+  onFinishQuiz() {
     this.quizFinished.emit();
   }
 
