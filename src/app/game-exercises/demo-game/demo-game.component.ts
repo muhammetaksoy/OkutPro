@@ -48,7 +48,6 @@ export class DemoGameComponent {
             });
             this.exerciseCount =
               baseHttpResponse.ServiceResult.Result.exerciseCount;
-            console.log('this.exercises', this.exercises);
           }
         }
       );
@@ -65,9 +64,6 @@ export class DemoGameComponent {
   }
 
   onNavigateNext(data: any) {
-
-    console.log("data", data);
-
     this.exerciseCount--;
     const existingResultIndex = this.exerciseResults.findIndex(
       (result) => result.exerciseId === data.exerciseId

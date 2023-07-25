@@ -18,7 +18,7 @@ export class LetterPositioningLastComponent {
 
   }
 
-  onFinishQuiz(){
+  onFinishQuiz() {
     this.quizFinished.emit();
   }
 
@@ -28,14 +28,11 @@ export class LetterPositioningLastComponent {
 
   onNext() {
 
-    console.log("rhis.exercise",this.exercise.ItemIndex);
-    
-
     const date: any = moment();
     const newDateTime = date.add(3, 'hours');
 
     const formData = {
-      ItemIndex:this.exercise.ItemIndex,
+      ItemIndex: this.exercise.ItemIndex,
       exerciseId: this.exercise.Id,
       start: this.exercise.start || new newDateTime.toISOString(),
       finish: newDateTime.toISOString(),
