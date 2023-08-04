@@ -1,0 +1,38 @@
+<div class="quiz-container">
+  <div class="main-question">
+    <p>{{ exercise.JSONContent.questionText1 }}</p>
+    <h2>{{ exercise.JSONContent.keyword }}</h2>
+    <span class="error-question-text"> Öğrenci hata yaptıysa işaretleyin </span>
+  </div>
+
+  <div class="error-questions">
+    <div class="error-buttons-wrapper">
+      <ng-container *ngFor="let error of exercise.JSONContent.PossibleErrors">
+        <div *ngIf="error.ErrorId !== 2" class="error-button-container">
+          <button class="error-question" [ngClass]="{ 'selected': error.count === 1 }" (click)="onErrorClick(error)">
+            {{ error.ErrorText }}
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="error-questions">
+    <ng-container *ngFor="let error of exercise.JSONContent.PossibleErrors">
+      <div *ngIf="error.ErrorId === 2">
+        <label class="error-question-text">{{ error.ErrorText }}</label>
+        <div class="answer-button-container">
+          <button (click)="onAnswerChange(error, 1)" [ngClass]="{ 'selected': error.count === 1 }">Evet</button>
+          <button (click)="onAnswerChange(error, 0)" [ngClass]="{ 'selected': error.count === 0 }">Hayır</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+</div>
+
+<div class="direction-container">
+  <div class="direction-buttons">
+    <button (click)="onNext()" [disabled]="isNextDisabled">{{ isLastExercise ? 'Quiz\'i Bitir' : 'İleri' }}</button>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+.reading-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  padding: 8px;
+  margin: 20px;
+}
+
+.text-container {
+  flex: 10;
+  font-size: 2rem;
+}
+
+.errors-container {
+  flex: 2;
+  border-left: 2px solid #a67cbf !important;
+}
+
+.error-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.error-button {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.error-count {
+  margin: 0 10px;
+  font-size: 18px;
+}
+
+.error-text {
+  flex: 1;
+}
+
+.start-reading {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.start-reading button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #a67cbf;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

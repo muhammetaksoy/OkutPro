@@ -6,5 +6,6 @@ export enum GameMechanicType {
     JoinLetters = 5,
     LetterPositioningFirst = 6,
     LetterPositioningLast = 7,
-    WritingLetters = 8
+    WritingLetters = 8,
+    ReadSentences = 9
 }

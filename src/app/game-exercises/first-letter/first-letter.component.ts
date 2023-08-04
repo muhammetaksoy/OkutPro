@@ -18,12 +18,8 @@ export class FirstLetterComponent {
 
   }
 
-  onFinishQuiz(){
+  onFinishQuiz() {
     this.quizFinished.emit();
-  }
-
-  onBack() {
-    this.navigateBack.emit();
   }
 
   onNext() {

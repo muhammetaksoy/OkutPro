@@ -32,6 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 
 
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -67,7 +68,7 @@ export function createTranslateLoader(http: HttpClient) {
     ToastrModule.forRoot({
       timeOut: 3000,
       progressBar: true
-    }),
+    })
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

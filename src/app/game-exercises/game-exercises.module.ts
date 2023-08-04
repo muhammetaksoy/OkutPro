@@ -1,3 +1,5 @@
+import { ReadSentencesComponent } from './read-sentences/read-sentences.component';
+import { WritingLettersComponent } from './writing-letters/writing-letters.component';
 import { LetterPositioningLastComponent } from './letter-positioning-last/letter-positioning-last.component';
 import { JoinLettersComponent } from './join-letters/join-letters.component';
 import { DivideLettersComponent } from './divide-letters/divide-letters.component';
@@ -24,7 +26,9 @@ import { LetterPositioningFirstComponent } from './letter-positioning-first/lett
     DivideLettersComponent,
     JoinLettersComponent,
     LetterPositioningFirstComponent,
-    LetterPositioningLastComponent
+    LetterPositioningLastComponent,
+    WritingLettersComponent,
+    ReadSentencesComponent
   ],
   imports: [
     CommonModule,

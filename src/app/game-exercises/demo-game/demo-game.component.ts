@@ -47,13 +47,16 @@ export class DemoGameComponent {
               index++;
             });
             this.exerciseCount = baseHttpResponse.ServiceResult.Result.exerciseCount;
+            console.log(" this.exercises", this.exercises);
           }
         }
+
       );
+
   }
 
   startTest() {
-    this.currentExerciseIndex = 0;
+    this.currentExerciseIndex = 23;
     this.currentExercise = this.exercises[this.currentExerciseIndex];
 
     const date: any = moment();

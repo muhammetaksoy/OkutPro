@@ -1,0 +1,33 @@
+<div class="reading-container">
+  <div class="text-container">
+    <p>
+      <span *ngFor="let word of exercise.JSONContent.words"
+        [style.background]="word.highlight ? currentWordBackground : 'none'">
+        {{ word.word }}
+        <span> </span>
+      </span>
+    </p>
+
+  </div>
+  <div class="errors-container">
+    <div *ngFor="let error of exercise.JSONContent.PossibleErrors">
+      <div class="error-item">
+        <span class="error-text">{{ error.ErrorText }}</span>
+        <div>
+          <button class="error-button" (click)="decreaseErrorCount(error)">-</button>
+          <span class="error-count">{{ error.count }}</span>
+          <button class="error-button" (click)="increaseErrorCount(error)">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="start-reading">
+      <button (click)="startReading()">Okumayı Başlat</button>
+    </div>
+  </div>
+</div>
+
+<div class="direction-container">
+  <div class="direction-buttons">
+    <button (click)="onNext()">{{ isLastExercise ? 'Quiz\'i Bitir' : 'İleri' }}</button>
+  </div>
+</div>
