@@ -15,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { SecondLetterComponent } from './second-letter/second-letter.component';
 import { LetterPositioningFirstComponent } from './letter-positioning-first/letter-positioning-first.component';
+import { MatchingImagesComponent } from './matching-images/matching-images.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LetterPositioningFirstComponent } from './letter-positioning-first/lett
     LetterPositioningFirstComponent,
     LetterPositioningLastComponent,
     WritingLettersComponent,
-    ReadSentencesComponent
+    ReadSentencesComponent,
+    MatchingImagesComponent
   ],
   imports: [
     CommonModule,

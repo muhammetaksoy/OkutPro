@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-read-sentences',
@@ -11,80 +12,116 @@ export class ReadSentencesComponent {
   @Output() navigateBack = new EventEmitter<any>();
   @Output() navigateNext = new EventEmitter<any>();
 
+  url:any="https://okutiostorage.blob.core.windows.net/audioparagraphstr/Studio_Project_V2.mp4";
 
-  isNextDisabled: boolean = true;
-  isReading: boolean = false;
-  currentWordIndex: number = 0;
-  currentWordBackground: string = '#ffff99';
+
+   @ViewChild('myVideo')myVideo!: ElementRef;
+
+   clicked:number=0;
+   buttonText:string="okumayı başlat"
 
   constructor() { }
 
 
   ngOnInit(): void {
+    // Varsayılan error değerleri 0 olarak ayarlanıyor
+    this.exercise.JSONContent.PossibleErrors.forEach((error: any) => {
+      error.count = 0;
+    });
+
+    this.disableErrorButtons();
 
   }
 
-  startReading() {
-    if (this.exercise.VoiceRecordUrl) {
-      this.currentWordIndex = 0;
-      this.isReading = true;
-      this.highlightWord();
-      const audio = new Audio(this.exercise.VoiceRecordUrl);
-      audio.play();
+  disableErrorButtons() {
+    for (const error of this.exercise.JSONContent.PossibleErrors) {
+      error.disabled = true;
+    }
+  }
+  enableErrorButtons() {
+    for (const error of this.exercise.JSONContent.PossibleErrors) {
+      error.disabled = false;
     }
   }
 
-  highlightWord() {
-    const words = this.exercise.JSONContent.words;
+  playVideo() {
+    if(this.clicked==0){
+      this.enableErrorButtons();
+      this.buttonText="okumayı bitir";
+      this.clicked++;
+      return;
+    }
 
-    if (this.isReading && this.currentWordIndex < words.length) {
-      words[this.currentWordIndex].highlight = true;
-      this.currentWordBackground = '#ffff99';
+    if(this.clicked==1){
+      this.buttonText="dinlemeyi başlat";
+      this.disableErrorButtons();  
+      this.clicked++;
+      this.onNext(false);
+      this.exercise.JSONContent.PossibleErrors.forEach((error: any) => {
+        error.count = 0;
+      });
+      return; 
+    }
 
-      setTimeout(() => {
-        words[this.currentWordIndex].highlight = false;
-        this.currentWordIndex++;
-        this.highlightWord();
-      }, words[this.currentWordIndex].startMs);
-    } else {
-      this.isReading = false;
-      this.currentWordIndex = 0;
-      this.currentWordBackground = 'none';
+    if(this.clicked==2){
+      const videoElement = this.myVideo.nativeElement;
+      if (videoElement.paused) {
+        videoElement.play();
+      } else {
+        videoElement.pause();
+      }
+
+      this.buttonText="okumayı başlat";
+      this.disableErrorButtons();  
+      this.clicked++;
+      return; 
+    }
+
+    if(this.clicked==3){
+      this.buttonText="okumayı bitir";
+      this.enableErrorButtons();  
+      this.clicked++;
+      return; 
+    }
+
+    if(this.clicked==4){
+      this.buttonText="ileri";
+      this.disableErrorButtons();  
+
+      this.onNext(true);
+      return; 
     }
   }
+
 
   decreaseErrorCount(error: any) {
     if (error.count > 0) {
       error.count--;
     }
+    
   }
 
   increaseErrorCount(error: any) {
-    error.count++;
+    error.count++;    
   }
 
+  onNext(isNextQuestion?:boolean) {
 
+    const date: any = moment();
+    const newDateTime = date.add(3, 'hours');
 
-
-
-
-  onNext() {
-    const errorIdErrors = this.exercise.JSONContent.PossibleErrors.filter((error: any) => error.ErrorId !== 2);
-    for (const error of errorIdErrors) {
-      if (typeof error.count === 'undefined') {
-        error.count = 0;
-      }
-    }
-
+  console.log("this.exercise.JSONContent.PossibleErrors",this.exercise.JSONContent.PossibleErrors );
     const formData = {
-      ItemIndex: this.exercise.ItemIndex,
       exerciseId: this.exercise.Id,
+      start: this.exercise.start || new newDateTime.toISOString(),
+      finish: newDateTime.toISOString(),
       errorRecords: this.exercise.JSONContent.PossibleErrors.map((error: any) => {
         return {
           errorId: error.ErrorId,
           count: error.count
         };
-      })
+      }),
+      isNextQuestion:isNextQuestion
     };
 
     console.log("formData", formData);

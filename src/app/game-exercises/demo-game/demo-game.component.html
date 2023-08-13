@@ -67,6 +67,12 @@
         [isLastExercise]="isLastExercise"></app-read-sentences>
     </ng-container>
 
+    <ng-container *ngIf="currentExercise.GameMechanic_Id ===10">
+      <app-matching-images [exercise]="currentExercise" (navigateBack)="onNavigateBack()"
+        (navigateNext)="onNavigateNext($event)" (quizFinished)="onQuizFinished()"
+        [isLastExercise]="isLastExercise"></app-matching-images>
+    </ng-container>
+
   </div>
 
 </ng-container>

@@ -17,8 +17,6 @@
 
 <div class="direction-container">
   <div class="direction-buttons">
-    <button (click)="onBack()" [disabled]="exercise.ItemIndex==0">Geri</button>
     <button (click)="onNext()" [disabled]="isNextDisabled">{{ isLastExercise ? 'Quiz\'i Bitir' : 'İleri' }}</button>
-
   </div>
 </div>

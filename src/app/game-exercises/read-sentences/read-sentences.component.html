@@ -1,33 +1,38 @@
 <div class="reading-container">
-  <div class="text-container">
-    <p>
-      <span *ngFor="let word of exercise.JSONContent.words"
-        [style.background]="word.highlight ? currentWordBackground : 'none'">
-        {{ word.word }}
-        <span> </span>
-      </span>
-    </p>
-
+  <div class="read-sentences-container">
+    <video #myVideo class="video-element">
+      <source [src]="url" type="video/mp4" />
+    </video>
   </div>
+
   <div class="errors-container">
-    <div *ngFor="let error of exercise.JSONContent.PossibleErrors">
-      <div class="error-item">
+    <div class="error-list">
+      <div
+        *ngFor="let error of exercise.JSONContent.PossibleErrors"
+        class="error-item"
+      >
         <span class="error-text">{{ error.ErrorText }}</span>
         <div>
-          <button class="error-button" (click)="decreaseErrorCount(error)">-</button>
+          <button class="error-button" (click)="decreaseErrorCount(error)" [disabled]="error.disabled">
+            -
+          </button>
           <span class="error-count">{{ error.count }}</span>
-          <button class="error-button" (click)="increaseErrorCount(error)">+</button>
+          <button class="error-button" (click)="increaseErrorCount(error)" [disabled]="error.disabled">
+            +
+          </button>
         </div>
       </div>
     </div>
     <div class="start-reading">
-      <button (click)="startReading()">Okumayı Başlat</button>
+      <button (click)="playVideo()">{{buttonText}}</button>
     </div>
   </div>
 </div>
 
 <div class="direction-container">
   <div class="direction-buttons">
-    <button (click)="onNext()">{{ isLastExercise ? 'Quiz\'i Bitir' : 'İleri' }}</button>
+    <button (click)="onNext()">
+      {{ isLastExercise ? "Quiz'i Bitir" : "İleri" }}
+    </button>
   </div>
 </div>

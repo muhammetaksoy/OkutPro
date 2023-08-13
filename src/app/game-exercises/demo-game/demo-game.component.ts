@@ -56,7 +56,7 @@ export class DemoGameComponent {
   }
 
   startTest() {
-    this.currentExerciseIndex = 23;
+    this.currentExerciseIndex = 24;
     this.currentExercise = this.exercises[this.currentExerciseIndex];
 
     const date: any = moment();
@@ -66,12 +66,13 @@ export class DemoGameComponent {
   }
 
   onNavigateNext(data: any) {
+
     this.exerciseCount--;
     const existingResultIndex = this.exerciseResults.findIndex(
       (result) => result.exerciseId === data.exerciseId
     );
 
-    if (existingResultIndex !== -1) {
+    if (existingResultIndex !== -1 && data.isNextQuestion==false) {
       this.exerciseResults[existingResultIndex] = {
         exerciseId: data.exerciseId,
         start: data.start,
@@ -88,13 +89,20 @@ export class DemoGameComponent {
     }
 
     if (this.currentExerciseIndex < this.exercises.length - 1) {
-      this.currentExerciseIndex++;
-      this.currentExercise = this.exercises[this.currentExerciseIndex];
+      if(data.isNextQuestion==false){
+        return;
+      }
 
-      const date: any = moment();
-      const newDateTime = date.add(3, 'hours');
-      this.currentExercise.start =
-        this.currentExercise.start || newDateTime.toISOString();
+
+        this.currentExerciseIndex++;
+        this.currentExercise = this.exercises[this.currentExerciseIndex];
+  
+        const date: any = moment();
+        const newDateTime = date.add(3, 'hours');
+        this.currentExercise.start =
+          this.currentExercise.start || newDateTime.toISOString();
+      
+
     }
 
     if (data.ItemIndex + 1 === this.exercises.length - 1) {
