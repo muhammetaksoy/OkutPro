@@ -18,12 +18,12 @@
             </i></button>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <!-- <ul class="nav navbar-nav navbar-right">
         <li class="nav-item user_profile">
           <button mat-button [matMenuTriggerFor]="profilemenu">
             <div class="chip dropdown-toggle" ngbDropdownToggle class="pt-0">
               <img src="{{userImg}}" class="user_img" width="32" height="32" alt="User">
-              <span>Muhammet Aksoy</span>
+              <span>{{userFullName}}</span>
             </div>
           </button>
           <mat-menu #profilemenu="matMenu" class="profile-menu">
@@ -33,16 +33,13 @@
                   <button mat-menu-item>
                     <app-feather-icons [icon]="'user'" [class]="'user-menu-icons'"></app-feather-icons>Profil
                   </button>
-                  <button mat-menu-item (click)="logout()">
-                    <app-feather-icons [icon]="'log-out'" [class]="'user-menu-icons'"></app-feather-icons>Çıkış Yap
-                  </button>
                 </div>
               </div>
             </div>
           </mat-menu>
         </li>
-        <!-- #END# Tasks -->
-      </ul>
+        
+      </ul> -->
     </div>
   </div>
 </nav>

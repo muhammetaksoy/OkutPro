@@ -13,6 +13,7 @@ import {
 import { ROUTES } from './sidebar-items';
 import { Role, AuthService } from '@core';
 import { RouteInfo } from './sidebar.metadata';
+import { AuthenticationService } from '@core/services/general/authentication.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -30,13 +31,15 @@ export class SidebarComponent implements OnInit, OnDestroy {
   headerHeight = 60;
   currentRoute?: string;
   routerObj;
+  User:any;
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     public elementRef: ElementRef,
-    private authService: AuthService,
+    private authService: AuthenticationService,
     private router: Router
   ) {
+      this.getUser();
     this.elementRef.nativeElement.closest('body');
     this.routerObj = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -69,31 +72,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
-    if (this.authService.currentUserValue) {
-      const userRole = this.authService.currentUserValue.role;
-      this.userFullName =
-        this.authService.currentUserValue.firstName +
-        ' ' +
-        this.authService.currentUserValue.lastName;
-      this.userImg = this.authService.currentUserValue.img;
 
-      this.sidebarItems = ROUTES.filter(
-        (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf('All') !== -1
-      );
-      if (userRole === Role.Admin) {
-        this.userType = Role.Admin;
-      } else if (userRole === Role.Teacher) {
-        this.userType = Role.Teacher;
-      } else if (userRole === Role.Student) {
-        this.userType = Role.Student;
-      } else {
-        this.userType = Role.Admin;
-      }
-    }
-
-    this.initLeftSidebar();
-    this.bodyTag = this.document.body;
+   
   }
+  
   ngOnDestroy() {
     this.routerObj.unsubscribe();
   }
@@ -112,6 +94,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
   isOpen() {
     return this.bodyTag.classList.contains('overlay-open');
+  }
+  deneme():any{
+    console.log("User",this.User);
   }
   checkStatuForResize(firstTime: boolean) {
     if (window.innerWidth < 1170) {
@@ -135,10 +120,41 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
   }
   logout() {
-    this.authService.logout().subscribe((res) => {
-      if (!res.success) {
-        this.router.navigate(['/authentication/signin']);
-      }
-    });
+    this.authService.logout();
+    this.router.navigate(['/authentication/signin']);
+  }
+
+
+  getUser():any{
+    this.authService.getUser().subscribe((res:any)=>{
+      this.User=res.User;
+      console.log("user",this.User);
+      if (this.User) {
+        const userRole = this.User.UserType
+        this.userFullName =this.User.NameSurname;
+        //this.userImg = this.authService.currentUserValue.img;
+  
+        this.sidebarItems = ROUTES.filter(
+          (x) => x.UserType===userRole
+        );
+  
+  
+        console.log("this.sidebarıtems",this.sidebarItems);
+        
+        if (userRole === 1) {
+          this.userType = Role.Admin;
+        } else if (userRole === Role.Teacher) {
+          this.userType = Role.Teacher;
+        } else if (userRole === Role.Student) {
+          this.userType = Role.Student;
+        } else {
+          this.userType = Role.Admin;
+        }
+     }
+  
+      this.initLeftSidebar();
+      this.bodyTag = this.document.body;
+      
+    })
   }
 }

@@ -16,30 +16,49 @@ export const ROUTES: RouteInfo[] = [
   // Admin Modules
 
   {
-    path: '',
-    title: 'MENUITEMS.DASHBOARD.TEXT',
+    path: '/admin/dashboard/main',
+    title: 'Dashboard',
     iconType: 'material-icons-two-tone',
     icon: 'space_dashboard',
-    class: 'menu-toggle',
+    class: '',
     groupTitle: false,
     badge: '',
     badgeClass: '',
     role: ['Admin'],
-    submenu: [
-      {
-        path: '/admin/dashboard/main',
-        title: 'MENUITEMS.DASHBOARD.LIST.DASHBOARD1',
-        iconType: '',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        role: [''],
-        submenu: [],
-      },
-    ],
+    UserType:1,
+    submenu: [],
   },
+
+  {
+    path: '/admin/students/all-students',
+    title: 'Öğrenciler',
+    iconType: 'material-icons-two-tone',
+    icon: 'school',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Admin'],
+    UserType:1,
+    submenu:[]
+  },
+
+  {
+    path: '/admin/teachers/all-teachers',
+    title: 'Uzmanlar',
+    iconType: 'material-icons-two-tone',
+    icon: 'people',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Admin'],
+    UserType:1,
+    submenu:[]
+  },
+
+
+
   // Teacher Modules
 
   {

@@ -1,0 +1,53 @@
+
+<section class="content">
+  <div class="content-block my-5">
+    <!-- <div class="block-header" *ngFor="let breadscrum of breadscrums">
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div> -->
+    <!-- Your content goes here  -->
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 mx-auto">
+        <div class="card">
+          <div class="m-b-20">
+            <div class="contact-grid">
+              <div class="profile-header bg-dark">
+                <div class="user-name">{{detayVeri.StudentName}}</div>
+                <div class="name-center">{{detayVeri.StudentStatus}}</div>
+              </div>
+              <img src="assets/images/profile.png" class="user-img" alt="">
+              <div>
+                <span class="phone">
+                  Ebeveyn Numarası: {{detayVeri.ParentPhoneNumber}}</span>
+              </div>
+
+              <div class="row my-5">
+                <div class="col-md-3 col-6 b-r">
+                  <strong>Sınıf</strong>
+                  <br>
+                  <p class="text-muted">{{detayVeri.Grade}}</p>
+                </div>
+                <div class="col-md-3 col-6 b-r">
+                  <strong>Ebeveyn Ad Soyad</strong>
+                  <br>
+                  <p class="text-muted">{{detayVeri.ParentNameSurname}}</p>
+                </div>
+                <div class="col-md-3 col-6 b-r">
+                  <strong>Ebeveyn E-mail</strong>
+                  <br>
+                  <p class="text-muted">{{detayVeri.ParentEmail}}</p>
+                </div>
+                <div class="col-md-3 col-6">
+                  <strong>Uzman Ad Soyad</strong>
+                  <br>
+                  <p class="text-muted">{{detayVeri.ExpertName}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

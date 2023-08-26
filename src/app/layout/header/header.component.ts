@@ -16,6 +16,7 @@ import {
   Role,
   AuthService,
 } from '@core';
+import { AuthenticationService } from '@core/services/general/authentication.service';
 
 interface Notifications {
   message: string;
@@ -45,6 +46,8 @@ export class HeaderComponent
   isOpenSidebar?: boolean;
   docElement: HTMLElement | undefined;
   isFullScreen = false;
+  User:any;
+  userFullName?:string;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -52,9 +55,10 @@ export class HeaderComponent
     public elementRef: ElementRef,
     private rightSidebarService: RightSidebarService,
     private configService: ConfigService,
-    private authService: AuthService,
     private router: Router,
-    public languageService: LanguageService
+    public languageService: LanguageService,
+    private authService: AuthenticationService
+
   ) {
     super();
   }
@@ -115,20 +119,10 @@ export class HeaderComponent
     },
   ];
   ngOnInit() {
+    this.getUser();
     this.config = this.configService.configData;
 
-    const userRole = this.authService.currentUserValue.role;
-    this.userImg = this.authService.currentUserValue.img;
 
-    if (userRole === Role.Admin) {
-      this.homePage = 'admin/dashboard/main';
-    } else if (userRole === Role.Teacher) {
-      this.homePage = 'teacher/dashboard';
-    } else if (userRole === Role.Student) {
-      this.homePage = 'student/dashboard';
-    } else {
-      this.homePage = 'admin/dashboard/main';
-    }
 
     this.langStoreValue = localStorage.getItem('lang') as string;
     const val = this.listLang.filter((x) => x.lang === this.langStoreValue);
@@ -177,11 +171,24 @@ export class HeaderComponent
       localStorage.setItem('collapsed_menu', 'true');
     }
   }
-  logout() {
-    this.subs.sink = this.authService.logout().subscribe((res) => {
-      if (!res.success) {
-        this.router.navigate(['/authentication/signin']);
+
+
+
+  getUser():any{
+    this.authService.getUser().subscribe((res:any)=>{
+      this.User=res.User;
+      const userRole = this.User.UserType;
+      this.userFullName =this.User.NameSurname;
+
+      if (userRole === Role.Admin) {
+        this.homePage = 'admin/dashboard/main';
+      } else if (userRole === Role.Teacher) {
+        this.homePage = 'teacher/dashboard';
+      } else if (userRole === Role.Student) {
+        this.homePage = 'student/dashboard';
+      } else {
+        this.homePage = 'admin/dashboard/main';
       }
-    });
+    })
   }
 }

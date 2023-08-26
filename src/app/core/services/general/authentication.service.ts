@@ -45,6 +45,10 @@ export class AuthenticationService {
     return this.http.get(environment.apiUrl + Endpoint.auth_verifySms + "?input=" + smsCode);
   }
 
+  getUser(): Observable<any> {
+    return this.http.get(environment.apiUrl + Endpoint.auth_getUser);
+  }
+
 
   setToken(token: string): void {
     localStorage.setItem('access_token', token);

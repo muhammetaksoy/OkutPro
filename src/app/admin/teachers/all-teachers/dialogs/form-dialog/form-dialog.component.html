@@ -1,0 +1,126 @@
+<div class="addContainer">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <!-- <img [src]='students.img' alt="avatar"> -->
+        <div class="modal-about">
+          {{dialogTitle}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()" class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="stdForm">
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Öğrenci Adı</mat-label>
+            <input matInput formControlName="StudentNameSurname" required>
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>face</i>
+            <mat-error *ngIf="stdForm.get('StudentNameSurname')?.hasError('required')">
+              Öğrenci Adı Alanı Zorunludur
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Öğrenci Sınıfı</mat-label>
+            <input matInput formControlName="StudentGrade" type="text">
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>class</i>
+            <mat-error *ngIf="stdForm.get('StudentGrade')?.hasError('required')">
+              Öğrenci Sınıfı Alanı Zorunludur
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="this.action === 'add'" class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Okul Adı</mat-label>
+            <input matInput formControlName="SchoolName" type="text">
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>school</i>
+            <mat-error *ngIf="stdForm.get('SchoolName')?.hasError('required')">
+              Okul Adı Alanı Zorunludur
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Ebeveyn Adı</mat-label>
+            <input matInput formControlName="ParentNameSurname" required>
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>person</i>
+            <mat-error *ngIf="stdForm.get('ParentNameSurname')?.hasError('required')">
+              Ebeveyn Adı Alanı Zorunludur
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Ebeveyn E-posta</mat-label>
+            <input matInput formControlName="ParentEmail" required>
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>email</i>
+            <mat-error *ngIf="stdForm.get('ParentEmail')?.hasError('required') || stdForm.get('ParentEmail')?.touched">
+              Email alanını doğru formatta giriniz
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Ebeveyn Telefon Numarası</mat-label>
+            <input matInput formControlName="ParentPhoneNumber" type="text" >
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>phone</i>
+            <mat-error *ngIf="stdForm.get('ParentPhoneNumber')?.hasError('required')">
+              Telefon Alanı zorunludur
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div *ngIf="this.action === 'add'"  class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Tanımlı mı?</mat-label>
+            <mat-select formControlName="isDiagnosed" required>
+              <mat-option [value]="'true'">
+                Evet
+              </mat-option>
+              <mat-option [value]="'false'">
+                Hayır
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="stdForm.get('isDiagnosed')?.hasError('required')">
+              Lütfen seçim yapınız
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Notlar</mat-label>
+            <input matInput formControlName="Notes" required>
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>note</i>
+            <mat-error *ngIf="stdForm.get('Notes')?.hasError('required')">
+              Not Alanı zorunludur            
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" [disabled]="!stdForm.valid" [mat-dialog-close]="1"
+              (click)="confirmAdd()">Kaydet</button>
+            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">İptal</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
