@@ -16,8 +16,9 @@ export enum Endpoint {
   //teachers
   teacher_GetExpertList='Expert/GetExpertList',
   teacher_GetExpertProfile='Expert/GetExpertProfile',
-  teacher_GetMyProfile='Expert/GetMyProfile',
+  expert_GetMyProfile='Expert/GetMyProfile',
   teacher_EditMyProfile='Expert/EditMyProfile',
+  teacher_AddCreditToExpert='Admin/AddCreditToExpert',        
 
 
   

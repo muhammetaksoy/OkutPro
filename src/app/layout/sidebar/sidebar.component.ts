@@ -141,9 +141,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
   
         console.log("this.sidebarıtems",this.sidebarItems);
         
-        if (userRole === 1) {
+        if (userRole === 5) {
           this.userType = Role.Admin;
-        } else if (userRole === Role.Teacher) {
+        } else if (userRole === 1) {
           this.userType = Role.Teacher;
         } else if (userRole === Role.Student) {
           this.userType = Role.Student;

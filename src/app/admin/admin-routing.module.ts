@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { MyProfileComponent } from './profile/my-profile/my-profile.component';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+  },
+  {
+    path: 'my-profile',
+    component: MyProfileComponent,
   },
   {
     path: 'students',
@@ -15,7 +20,7 @@ const routes: Routes = [
   {
     path: 'teachers',
     loadChildren: () =>
-      import('./teachers/teachers.module').then((m) => m.TeachersModule),
+      import('./teachers/teacher.module').then((m) => m.TeacherModule),
   },
 ];
 

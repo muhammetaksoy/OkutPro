@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
-import { StudentsService } from 'app/admin/students/all-students/students.service';
+import { StudentsService } from '../../students.service';
 
 export interface DialogData {
   StudentId: number;

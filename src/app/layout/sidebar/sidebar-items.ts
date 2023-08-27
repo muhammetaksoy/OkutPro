@@ -25,7 +25,21 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     role: ['Admin'],
-    UserType:1,
+    UserType:5,
+    submenu: [],
+  },
+
+  {
+    path: '/admin/my-profile',
+    title: 'Profil',
+    iconType: 'material-icons-two-tone',
+    icon: 'space_dashboard',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Admin'],
+    UserType:5,
     submenu: [],
   },
 
@@ -39,7 +53,7 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     role: ['Admin'],
-    UserType:1,
+    UserType:5,
     submenu:[]
   },
 
@@ -53,7 +67,7 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     role: ['Admin'],
-    UserType:1,
+    UserType:5,
     submenu:[]
   },
 

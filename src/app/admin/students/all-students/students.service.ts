@@ -5,7 +5,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
 import { environment } from 'environments/environment';
 import { Endpoint } from '@core/enums/endpoint.enum';
-import { Teachers } from 'app/admin/teachers/all-teachers/teachers.model';
 @Injectable()
 export class StudentsService extends UnsubscribeOnDestroyAdapter {
   isTblLoading = true;
@@ -37,20 +36,7 @@ export class StudentsService extends UnsubscribeOnDestroyAdapter {
     });
   }
 
-  
-  getAllTeachers(): void {
-    this.subs.sink = this.httpClient.get<Teachers[]>(environment.apiUrl + Endpoint.teacher_GetExpertList).subscribe({
-      next: (data:any) => {
-        console.log("data,",data.Students);
-        this.isTblLoading = false;
-        this.dataChange.next(data.Students);
-      },
-      error: (error: HttpErrorResponse) => {
-        this.isTblLoading = false;
-        console.log(error.name + ' ' + error.message);
-      },
-    });
-  }
+
 
   // getStudentInfoById(StudentId:number): void {
   //   this.subs.sink = this.httpClient.get<Students[]>(environment.apiUrl + Endpoint.student_GetStudentInfo+'?='+StudentId).subscribe({
