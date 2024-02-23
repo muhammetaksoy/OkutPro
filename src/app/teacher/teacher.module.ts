@@ -9,6 +9,9 @@ import { TeacherRoutingModule } from './teacher-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ComponentsModule } from '../shared/components/components.module';
 import { SharedModule } from '../shared/shared.module';
+import { ProfileService } from 'app/admin/profile/profile.service';
+import { StudentsService } from 'app/admin/students/all-students/students.service';
+import { TeacherService } from 'app/admin/teachers/all-teachers/teacher.service';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -26,6 +29,6 @@ import { SharedModule } from '../shared/shared.module';
     ComponentsModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [ProfileService,StudentsService,TeacherService],
 })
 export class TeacherModule {}

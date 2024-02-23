@@ -1,0 +1,24 @@
+<div class="container">
+    <h3 mat-dialog-title>Emin misiniz?</h3>
+    <div mat-dialog-content>
+        <ul class="clearfix">
+            <li>
+                <p><span class="font-weight-bold"> Öğrenci Adı: </span>{{data.StudentName}}</p>
+            </li>
+            <li>
+                <p><span class="font-weight-bold"> Sınıf: </span>{{ data.Grade }}</p>
+            </li>
+            <li>
+                <p>
+                    <span class="font-weight-bold">Ebeveyn tel: </span>{{data.ParentPhoneNumber}}
+                </p>
+            </li>
+        </ul>
+    </div>
+    <div mat-dialog-actions class="mb-1">
+        <button mat-flat-button color="warn" [mat-dialog-close]="1" (click)="confirmDelete()">
+            Sil
+        </button>
+        <button mat-flat-button (click)="onNoClick()" tabindex="-1">İptal</button>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="addContainer">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <!-- <img [src]='students.img' alt="avatar"> -->
+        <div class="modal-about">
+          {{dialogTitle}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()" class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="addCorporationForm">
+
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Şirket Adı</mat-label>
+            <input matInput formControlName="Name" required>
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>face</i>
+            <mat-error *ngIf="addCorporationForm.get('Name')?.hasError('required')">
+              Şirket Adı Alanı Zorunludur
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Şirket Telefonu</mat-label>
+            <input matInput formControlName="PhoneNumber" type="text">
+            <i class="material-icons-two-tone color-icon p-3" matSuffix>class</i>
+            <mat-error *ngIf="addCorporationForm.get('PhoneNumber')?.hasError('required')">
+              Telefon Alanı Zorunludur
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" [disabled]="!addCorporationForm.valid" [mat-dialog-close]="1"
+              (click)="confirmAdd()">Ekle</button>
+            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">İptal</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

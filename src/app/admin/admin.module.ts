@@ -7,9 +7,13 @@ import { ProfileService } from './profile/profile.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
+import { EditProfileDialogComponent } from './profile/my-profile/dialogs/edit-profile-dialog/edit-profile-dialog.component';
 
 @NgModule({
-  declarations: [MyProfileComponent],
+  declarations: [
+    MyProfileComponent,
+    EditProfileDialogComponent
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,

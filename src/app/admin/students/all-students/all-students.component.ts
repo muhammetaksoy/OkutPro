@@ -305,7 +305,6 @@ export class ExampleDataSource extends DataSource<Students> {
   }
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<Students[]> {
-    debugger
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
       this.studentService.dataChange,

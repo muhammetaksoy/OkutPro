@@ -33,7 +33,7 @@ export const ROUTES: RouteInfo[] = [
     path: '/admin/my-profile',
     title: 'Profil',
     iconType: 'material-icons-two-tone',
-    icon: 'space_dashboard',
+    icon: 'person',
     class: '',
     groupTitle: false,
     badge: '',
@@ -71,6 +71,20 @@ export const ROUTES: RouteInfo[] = [
     submenu:[]
   },
 
+  {
+    path: '/admin/corporations/all-corporations',
+    title: 'Şirketler',
+    iconType: 'material-icons-two-tone',
+    icon: 'apartment',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Admin'],
+    UserType:5,
+    submenu:[]
+  },
+
 
 
   // Teacher Modules
@@ -85,8 +99,77 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     role: ['Teacher'],
+    UserType:1,
     submenu: [],
   },
+  
+  {
+    path: '/teacher/my-profile',
+    title: 'Profil',
+    iconType: 'material-icons-two-tone',
+    icon: 'person',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Teacher'],
+    UserType:1,
+    submenu: [],
+  },
+  {
+    path: '/teacher/all-teachers',
+    title: 'Uzmanlar',
+    iconType: 'material-icons-two-tone',
+    icon: 'people',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Teacher'],
+    UserType:1,
+    submenu: [],
+  },
+  {
+    path: '',
+    title: 'Öğrenciler',
+    iconType: 'material-icons-two-tone',
+    icon: 'school',
+    class: 'menu-toggle',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Teacher'],
+    UserType:1,
+    submenu: [
+      {
+        path: '/teacher/all-students',
+        title: 'Tüm Öğrenciler',
+        iconType: 'material-icons-two-tone',
+        icon: 'school',
+        class: 'ml-menu',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        role: ['Teacher'],
+        UserType:1,
+        submenu: [],
+      },
+      {
+        path: '/teacher/my-students',
+        title: 'Öğrencilerim',
+        iconType: 'material-icons-two-tone',
+        icon: 'school',
+        class: 'ml-menu',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        role: ['Teacher'],
+        UserType:1,
+        submenu: [],
+      },
+    ]
+  },
+    
 
   // Student Modules
 
@@ -102,6 +185,7 @@ export const ROUTES: RouteInfo[] = [
     role: ['Student'],
     submenu: [],
   },
+  
 
   // Common Module
 

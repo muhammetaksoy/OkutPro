@@ -22,6 +22,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./teachers/teacher.module').then((m) => m.TeacherModule),
   },
+
+  {
+    path: 'corporations',
+    loadChildren: () =>
+      import('./corporations/corporation.module').then((m) => m.CorporationModule),
+  },
 ];
 
 @NgModule({

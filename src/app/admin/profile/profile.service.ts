@@ -24,4 +24,18 @@ export class ProfileService extends UnsubscribeOnDestroyAdapter {
     return this.httpClient.get(environment.apiUrl + Endpoint.expert_GetMyProfile);
   }
 
+  updateProfile(data: any): void {
+    this.dialogData = data;
+
+    this.httpClient.post(environment.apiUrl + Endpoint.teacher_EditMyProfile, data)
+        .subscribe({
+          next: (data) => {
+            this.dialogData = data;
+          },
+          error: (error: HttpErrorResponse) => {
+             // error code here
+          },
+        });
+  }
+
 }

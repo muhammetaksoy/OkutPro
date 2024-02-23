@@ -56,7 +56,7 @@ export class DemoGameComponent {
   }
 
   startTest() {
-    this.currentExerciseIndex = 24;
+    this.currentExerciseIndex = 0;
     this.currentExercise = this.exercises[this.currentExerciseIndex];
 
     const date: any = moment();
